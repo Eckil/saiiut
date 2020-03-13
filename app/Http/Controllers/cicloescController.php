@@ -6,15 +6,18 @@ use App\cicloescModel;
 
 class cicloescController extends Controller
 {
+//------------------------------------------------------------------------
     public function indexCicloesc()
 	{
 		$cicloesc=cicloescModel::all();
 		return view('indexCicloesc')
 		->with('cicloesc',$cicloesc);
 	}
+//-----------------------------------------------------------------------
 	public function nuevoCicloesc(){
 		return view('nuevoCicloesc');
 	}
+//--------------------------------------------------------------------------
 	public function guardaCicloesc(Request $request){
 		$cicloesc = $request->cicloesc;
 		$activo = $request->activo;
@@ -25,6 +28,7 @@ class cicloescController extends Controller
 		$cicloesc ->save();
 		return redirect()->route('indexCicloesc')->with('success','registro exitoso');
 	}
+//----------------------------------------------------------------------------
 	public function modificaCicloesc($id)
 	{
 	$consulta = cicloescModel::find($id);
@@ -32,6 +36,7 @@ class cicloescController extends Controller
 	->with('consulta',$consulta)
     ->with('id',$id);
 	}
+//----------------------------------------------------------------------------
 	public function actualizarCicloesc(Request $request){
 		$id = $request->id;
 		$cicloesc = $request->cicloesc;
@@ -45,7 +50,7 @@ class cicloescController extends Controller
 		$cicloesc ->save();
 		return redirect()->route('indexCicloesc')->with('success','registro exitoso');
 	}
-
+//-------------------------------------------------------------------------
     public function eliminaCicloesc($id)
     {
         $cicloesc = cicloescModel::find($id);
